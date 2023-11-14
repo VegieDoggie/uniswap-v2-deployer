@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "copy_README": "ts-node __scripts__/copy_README.ts",
-    "build": "node esbuild && npm run copy_README"
+    "build": "tsc -p dist/tsconfig.json && npm run copy_README"
   },
   "keywords": [],
   "author": "",
@@ -15,7 +15,6 @@
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^3.0.0",
-    "esbuild": "^0.19.5",
     "hardhat": "^2.19.0",
     "ts-node": "^10.9.1"
   }

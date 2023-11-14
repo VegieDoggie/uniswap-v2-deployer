@@ -1,3 +1,5 @@
+/* tslint:disable */
+/* eslint-disable */
 export type {IUniswapV2Router02} from "./contracts/IUniswapV2Router02";
 export {IUniswapV2Router02__factory} from "./contracts/IUniswapV2Router02__factory";
 export type {IUniswapV2Factory} from "./contracts/IUniswapV2Factory";
