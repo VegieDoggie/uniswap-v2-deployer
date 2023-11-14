@@ -1,0 +1,22 @@
+{
+  "name": "uniswap-v2-deployer",
+  "version": "0.0.0",
+  "description": "uniswap v2 deployer",
+  "main": "index.js",
+  "author": "Tim (aitimate)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VegieDoggie/uniswap-v2-deployer.git"
+  },
+  "keywords": [
+    "ethereum",
+    "smart-contracts",
+    "ethers",
+    "uniswap"
+  ],
+  "bugs": {
+    "url": "https://https://github.com/VegieDoggie/uniswap-v2-deployer/issues"
+  },
+  "homepage": "https://https://github.com/VegieDoggie/uniswap-v2-deployer#readme"
+}
