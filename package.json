@@ -6,7 +6,9 @@
   "scripts": {
     "copy_README": "ts-node __scripts__/copy_README.ts",
     "clean": "cd dist && tsc --build --clean",
-    "build": "npm run clean && tsc -p dist/tsconfig.json && npm run copy_README"
+    "build": "npm run clean && tsc -p dist/tsconfig.json && npm run copy_README",
+    "login": "cd dist && npm login",
+    "publish": "cd dist && npm publish --access public"
   },
   "keywords": [],
   "author": "",

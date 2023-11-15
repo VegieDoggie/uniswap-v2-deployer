@@ -12,6 +12,12 @@ const artifacts: { [name: string]: { abi: any; bytecode: string } } = {
     WETH9: WETH9Json,
 };
 
+export type UniswapV2 = {
+    router: IUniswapV2Router02;
+    factory: IUniswapV2Factory;
+    weth9: IWETH;
+}
+
 export class UniswapV2Deployer {
     signer: Signer;
 
@@ -46,11 +52,7 @@ export class UniswapV2Deployer {
         )) as IUniswapV2Router02;
     }
 
-    static async deploy(signer: Signer, weth?: string): Promise<{
-        router: IUniswapV2Router02;
-        factory: IUniswapV2Factory;
-        weth9: IWETH;
-    }> {
+    static async deploy(signer: Signer, weth?: string): Promise<UniswapV2> {
         const deployer = new UniswapV2Deployer(signer);
 
         let weth9: IWETH;
