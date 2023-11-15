@@ -1,5 +1,5 @@
 import {Signer, ContractFactory, ZeroAddress} from "ethers";
-import {IUniswapV2Factory, IUniswapV2Router02, IWETH} from "./index";
+import {IUniswapV2Factory, IUniswapV2Router02, IWETH, IWETH__factory} from "./index";
 import UniswapV2FactoryJson from "./abi/UniswapV2Factory.json"
 import UniswapV2PairJson from "./abi/UniswapV2Pair.json"
 import UniswapV2Router02Json from "./abi/UniswapV2Router02.json"
@@ -46,14 +46,19 @@ export class UniswapV2Deployer {
         )) as IUniswapV2Router02;
     }
 
-    static async deploy(signer: Signer): Promise<{
+    static async deploy(signer: Signer, weth?: string): Promise<{
         router: IUniswapV2Router02;
         factory: IUniswapV2Factory;
         weth9: IWETH;
     }> {
         const deployer = new UniswapV2Deployer(signer);
 
-        const weth9 = await deployer.deployWETH9();
+        let weth9: IWETH;
+        if (weth) {
+            weth9 = IWETH__factory.connect(weth, signer)
+        } else {
+            weth9 = await deployer.deployWETH9();
+        }
         const factory = await deployer.deployFactory();
         const router = await deployer.deployRouter(await factory.getAddress(), await weth9.getAddress());
         const uniswap = await Promise.all([

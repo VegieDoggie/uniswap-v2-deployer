@@ -1,6 +1,6 @@
 {
   "name": "uniswap-v2-deployer",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "uniswap v2 deployer",
   "main": "index.js",
   "author": "Tim (aitimate)",

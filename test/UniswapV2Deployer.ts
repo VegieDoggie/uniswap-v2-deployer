@@ -25,7 +25,8 @@ describe("UniswapV2", () => {
 
     beforeEach(async () => {
         [deployer] = await ethers.getSigners();
-        ({factory, router} = await UniswapV2Deployer.deploy(deployer));
+        let uniswap = await UniswapV2Deployer.deploy(deployer);
+        ({factory, router} = await UniswapV2Deployer.deploy(deployer, await uniswap.weth9.getAddress()));
 
 
         const erc20Factory = await ethers.getContractFactory("Token", deployer);
