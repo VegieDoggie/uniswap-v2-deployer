@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "copy_README": "ts-node __scripts__/copy_README.ts",
-    "build": "tsc -p dist/tsconfig.json && npm run copy_README"
+    "clean": "cd dist && tsc --build --clean",
+    "build": "npm run clean && tsc -p dist/tsconfig.json && npm run copy_README"
   },
   "keywords": [],
   "author": "",
