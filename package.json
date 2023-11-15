@@ -8,7 +8,7 @@
     "clean": "cd dist && tsc --build --clean",
     "build": "npm run clean && tsc -p dist/tsconfig.json && npm run copy_README",
     "login": "cd dist && npm login",
-    "publish": "cd dist && npm publish --access public"
+    "publish": "npm run build && cd dist && npm publish --access public"
   },
   "keywords": [],
   "author": "",

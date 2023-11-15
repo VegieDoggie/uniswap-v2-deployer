@@ -12,6 +12,8 @@ const artifacts: { [name: string]: { abi: any; bytecode: string } } = {
     WETH9: WETH9Json,
 };
 
+export const SwapFee = 0.003;
+
 export type UniswapV2 = {
     router: IUniswapV2Router02;
     factory: IUniswapV2Factory;
