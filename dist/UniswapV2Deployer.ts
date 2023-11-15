@@ -56,8 +56,12 @@ export class UniswapV2Deployer {
         const weth9 = await deployer.deployWETH9();
         const factory = await deployer.deployFactory();
         const router = await deployer.deployRouter(await factory.getAddress(), await weth9.getAddress());
-
-        return {weth9, factory, router};
+        const uniswap = await Promise.all([
+            weth9.waitForDeployment(),
+            factory.waitForDeployment(),
+            router.waitForDeployment(),
+        ]);
+        return {weth9: uniswap[0], factory: uniswap[1], router: uniswap[2]};
     }
 
     private async deployContract<T>(
