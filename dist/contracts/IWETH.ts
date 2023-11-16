@@ -23,21 +23,45 @@ import type {
 
 export interface IWETHInterface extends Interface {
   getFunction(
-    nameOrSignature: "deposit" | "transfer" | "withdraw"
+    nameOrSignature:
+      | "approve"
+      | "balanceOf"
+      | "deposit"
+      | "transfer"
+      | "transferFrom"
+      | "withdraw"
   ): FunctionFragment;
 
+  encodeFunctionData(
+    functionFragment: "approve",
+    values: [AddressLike, BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "balanceOf",
+    values: [AddressLike]
+  ): string;
   encodeFunctionData(functionFragment: "deposit", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "transfer",
     values: [AddressLike, BigNumberish]
   ): string;
   encodeFunctionData(
+    functionFragment: "transferFrom",
+    values: [AddressLike, AddressLike, BigNumberish]
+  ): string;
+  encodeFunctionData(
     functionFragment: "withdraw",
     values: [BigNumberish]
   ): string;
 
+  decodeFunctionResult(functionFragment: "approve", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "balanceOf", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "deposit", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "transfer", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "transferFrom",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(functionFragment: "withdraw", data: BytesLike): Result;
 }
 
@@ -84,10 +108,24 @@ export interface IWETH extends BaseContract {
     event?: TCEvent
   ): Promise<this>;
 
+  approve: TypedContractMethod<
+    [arg0: AddressLike, arg1: BigNumberish],
+    [boolean],
+    "nonpayable"
+  >;
+
+  balanceOf: TypedContractMethod<[arg0: AddressLike], [bigint], "view">;
+
   deposit: TypedContractMethod<[], [void], "payable">;
 
   transfer: TypedContractMethod<
-    [to: AddressLike, value: BigNumberish],
+    [arg0: AddressLike, arg1: BigNumberish],
+    [boolean],
+    "nonpayable"
+  >;
+
+  transferFrom: TypedContractMethod<
+    [arg0: AddressLike, arg1: AddressLike, arg2: BigNumberish],
     [boolean],
     "nonpayable"
   >;
@@ -99,12 +137,29 @@ export interface IWETH extends BaseContract {
   ): T;
 
   getFunction(
+    nameOrSignature: "approve"
+  ): TypedContractMethod<
+    [arg0: AddressLike, arg1: BigNumberish],
+    [boolean],
+    "nonpayable"
+  >;
+  getFunction(
+    nameOrSignature: "balanceOf"
+  ): TypedContractMethod<[arg0: AddressLike], [bigint], "view">;
+  getFunction(
     nameOrSignature: "deposit"
   ): TypedContractMethod<[], [void], "payable">;
   getFunction(
     nameOrSignature: "transfer"
   ): TypedContractMethod<
-    [to: AddressLike, value: BigNumberish],
+    [arg0: AddressLike, arg1: BigNumberish],
+    [boolean],
+    "nonpayable"
+  >;
+  getFunction(
+    nameOrSignature: "transferFrom"
+  ): TypedContractMethod<
+    [arg0: AddressLike, arg1: AddressLike, arg2: BigNumberish],
     [boolean],
     "nonpayable"
   >;
